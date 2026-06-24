@@ -1,1 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CoreMotion - Esportes</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body class="logged-in">
 
+    <nav class="sidebar">
+        <div class="logo">Core<span>Motion</span></div>
+        <button class="nav-btn active" onclick="showPage('home')">Início (Notícias)</button>
+        <button class="nav-btn" onclick="showPage('feed')">Feed (Reels/Fotos)</button>
+        <button class="nav-btn" onclick="showPage('marketplace')">Marketplace</button>
+        <button class="nav-btn" onclick="showPage('archived')">Notícias Passadas</button>
+        <button class="nav-btn" onclick="showPage('profile')">Meu Perfil</button>
+        <button class="nav-btn" onclick="showPage('settings')">Configurações</button>
+        
+        <div class="auth-section">
+            <button class="btn-login" onclick="toggleLogin()">Entrar / Registrar</button>
+            <p style="font-size: 12px; color: #a0a0a0; margin-top: 10px; text-align: center;">
+                Modo: <span id="auth-status">Logado (Pode postar)</span>
+            </p>
+        </div>
+    </nav>
+
+    <main class="content">
+
+        <section id="home" class="page active">
+            <div class="home-layout">
+                <div>
+                    <h2>Destaques</h2>
+                    <div class="carousel" id="news-carousel">
+                        <div class="carousel-slide active" style="background-image: linear-gradient(transparent, #000), url('https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                            <div class="carousel-caption">
+                                <span>VÔLEI</span>
+                                <h3>Hoje irá ocorrer o jogo do time de Araucária VS Curitiba as 15:20 horas.</h3>
+                            </div>
+                        </div>
+                        <div class="carousel-slide" style="background-image: linear-gradient(transparent, #000), url('https://images.unsplash.com/photo-1565992441121-4367c2967103?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                            <div class="carousel-caption">
+                                <span>JUDÔ</span>
+                                <h3>Brasil conquista ouro em Paris.</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="requires-auth add-btn" style="margin-top: 10px;">+ Postar Notícia</button>
+
+                    <div class="agenda-section">
+                        <h2>Agenda de Eventos</h2>
+                        <button class="requires-auth add-btn" style="margin-top: 10px;">+ Adicionar Evento</button>
+                        <div style="padding: 15px; border: 1px solid var(--border-color); border-radius: 8px; margin-top: 10px;">
+                            <h4 style="color: var(--primary-red);">Treino de Fundamentos</h4>
+                            <p style="color: var(--text-muted); font-size: 14px;">20/05/2026 - 18:00 | Quadra Central</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="side-news">
+                    <h3 style="margin-bottom: 15px; border-bottom: 2px solid var(--primary-red); padding-bottom: 5px;">Esportes Gerais</h3>
+                    <div class="generic-news-item">
+                        <h4>Luta de Marcus Vinicius VS André Buticano</h4>
+                        <p style="font-size: 12px; color: var(--primary-red);">Hoje às 16:30</p>
+                    </div>
+                    <div class="generic-news-item">
+                        <h4>Nova geração do Basquete brilha na LDB</h4>
+                        <p style="font-size: 12px; color: var(--primary-red);">Ontem</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="feed" class="page">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h2>Feed</h2>
+                <button class="requires-auth add-btn">+ Adicionar Foto/Vídeo</button>
+            </div>
+            <div class="feed-container">
+                <div class="feed-item">
+                    <img src="https://images.unsplash.com/photo-1555597673-b21d5c935865?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Reel Basquete">
+                    <div style="position: absolute; bottom: 20px; left: 20px; text-shadow: 2px 2px 4px rgba(0,0,0,0.8);">
+                        <h3>@atleta_pro</h3>
+                        <p>Treino pesado hoje! 🏀</p>
+                    </div>
+                </div>
+                <div class="feed-item" style="background-color: #222;">
+                    <p style="text-align: center; padding: 20px;">Espaço para o próximo Reel vertical...</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="marketplace" class="page">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <h2>Marketplace</h2>
+                <button class="requires-auth add-btn">+ Adicionar Produto</button>
+            </div>
+            <div class="marketplace-grid">
+                <div class="product-card">
+                    <h4 style="margin-bottom: 10px;">Kimono Adidas Champion</h4>
+                    <p style="color: var(--primary-red); font-weight: bold; font-size: 20px;">R$ 890</p>
+                    <button>Comprar</button>
+                </div>
+                <div class="product-card">
+                    <h4 style="margin-bottom: 10px;">Protetor Bucal</h4>
+                    <p style="color: var(--primary-red); font-weight: bold; font-size: 20px;">R$ 45</p>
+                    <button>Comprar</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="archived" class="page">
+            <h2>Notícias Passadas</h2>
+            <p style="color: var(--text-muted);">Arquivo de tudo que já aconteceu no mundo dos esportes.</p>
+            <div style="margin-top: 20px; border: 1px solid var(--border-color); padding: 15px; border-radius: 8px;">
+                <h4>Brasil domina o pódio no Grand Slam</h4>
+                <p style="font-size: 12px; color: var(--text-muted);">15 Mai 2024</p>
+            </div>
+        </section>
+
+        <section id="profile" class="page">
+            <h2>Meu Perfil</h2>
+            <div class="profile-header">
+                <div class="profile-avatar"></div>
+                <div>
+                    <h3 style="color: var(--primary-red);">Editar Dados</h3>
+                </div>
+            </div>
+            <div style="max-width: 400px;">
+                <div class="input-group">
+                    <label>Nome / Apelido</label>
+                    <input type="text" value="dwadaw">
+                </div>
+                <div class="input-group">
+                    <label>Esporte Principal</label>
+                    <input type="text" value="Judô">
+                </div>
+                <div class="input-group">
+                    <label>Clube / Academia</label>
+                    <input type="text" placeholder="Não informado">
+                </div>
+                <button class="btn-login" style="background-color: var(--primary-red);">Salvar Alterações</button>
+            </div>
+        </section>
+
+        <section id="settings" class="page">
+            <h2>Configurações</h2>
+            <div style="margin-top: 20px; background-color: var(--bg-card); padding: 20px; border-radius: 10px;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
+                    <span>Alertas do Sistema</span>
+                    <input type="checkbox" checked>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                    <span>Perfil Público</span>
+                    <input type="checkbox" checked>
+                </div>
+            </div>
+        </section>
+
+    </main>
+</body>
+</html>
