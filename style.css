@@ -108,36 +108,25 @@ body.logged-in .btn-login { display: none; }
     position: relative;
     overflow: hidden;
     display: flex;
-    align-items: flex-end;
+    align-items: flex-start; /* Garante que o texto fique sempre no topo */
     border: 1px solid var(--border-color);
 }
 
-.carousel-slide {
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background-size: cover;
-    background-position: center;
-    opacity: 0;
-    transition: opacity 0.5s;
-}
-
-.carousel-slide.active { opacity: 1; }
+/* ... mantenha o .carousel-slide como está ... */
 
 .carousel-caption {
     position: relative;
     z-index: 2;
-    background: linear-gradient(transparent, rgba(0,0,0,0.9));
+    /* Inverte o gradiente: escuro no topo, transparente embaixo (sem linha dura) */
+    background: linear-gradient(rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
     width: 100%;
     padding: 20px;
+    /* Adiciona uma sombrinha extra no texto para garantir a leitura em qualquer foto */
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
 }
 
-.carousel-caption span {
-    background-color: var(--primary-red);
-    padding: 3px 8px;
-    border-radius: 4px;
-    font-size: 12px;
-    font-weight: bold;
-}
+.carousel-slide.active { opacity: 1; }
+
 
 /* Agenda Integrada no Início */
 .agenda-section {
